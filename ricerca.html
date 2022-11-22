@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <style>
+            .container{
+                display: none;
+            }
+            .nonsearch{
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container" id="container">
+            <li id="test1" name="Dio">Dio</li>
+            <li id="test2" name="Cristo">Cristo</li>
+        </div>
+        <div class="nonsearch" id="nonsearch">
+            <li name="Zio">Zio</li>
+            <li name="Perea">Pera</li>
+        </div>
+        <input id="testInput">
+        <script>
+            document.querySelector("#testInput").addEventListener("input", test);
+
+            function test(e) {
+                getvalue();
+            }
+        </script>
+        <script>
+            const ricerca = [];
+            d = 1;
+            n = 1;
+
+            function closeser(){
+                        document.getElementById('container').style.display = 'none';
+                        document.getElementById('nonsearch').style.display = 'block';
+                    }
+
+                    function openser(){
+                        document.getElementById('container').style.display = 'block';
+                        document.getElementById('nonsearch').style.display = 'none';
+                    }
+
+            function getvalue(){
+                while (d == 1){
+                    ntest = 'test' + n;
+                    tester = document.getElementById(ntest);
+                    if (tester != null){
+                        name = tester.getAttribute("name");
+                        ricerca.push(name);
+                        ++n;
+                    } else {
+                        d = 0;
+                    }
+                }
+                t = Object.keys(ricerca).length;
+                f = 0;
+                while (t != f){
+                    value = document.getElementById('testInput').value;
+                    let result = ricerca[f].includes(value);
+                    if (result === true){
+                        nomee = ricerca[f];
+                        let elements = document.getElementsByName(nomee);
+                        elements[0].style.opacity = 1;
+                    } else {
+                        nomee = ricerca[f];
+                        let elements = document.getElementsByName(nomee);
+                        elements[0].style.opacity = 0;
+                    }
+                    ++f;
+
+                    if (value == ''){
+                        closeser();
+                    } else {
+                        openser();
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
